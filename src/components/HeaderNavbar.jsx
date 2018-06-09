@@ -1,0 +1,26 @@
+import React, { Component } from "react";
+import { Navbar, Nav, NavItem, Glyphicon } from "react-bootstrap";
+
+export default class HeaderNavbar extends Component {
+  render() {
+    const navbarInstance = (
+      <Navbar inverse collapseOnSelect>
+        <Navbar.Header>
+          <Navbar.Brand>
+            <a href="/">QA</a>
+          </Navbar.Brand>
+        </Navbar.Header>
+        <Nav>
+          <NavItem eventKey={1} href="/qa/search">
+            <Glyphicon glyph="search" title="QAの検索" />
+          </NavItem>
+          <NavItem eventKey={2} href="/qa/add">
+            <Glyphicon glyph="edit" title="QAの登録・編集" />
+          </NavItem>
+        </Nav>
+      </Navbar>
+    );
+
+    return navbarInstance;
+  }
+}
