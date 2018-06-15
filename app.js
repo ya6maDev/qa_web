@@ -55,6 +55,8 @@ app.use('/qa/add', express.static('./public'));
 
 app.use('/qa/add/action', add);
 
+app.use('/qa/detail', express.static('./public'));
+
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
     const err = new Error('Not Found');
