@@ -17,6 +17,9 @@ export default class HeaderNavbar extends Component {
           <NavItem eventKey={2} href="/qa/add">
             <Glyphicon glyph="edit" title="QAの登録・編集" />
           </NavItem>
+          <NavItem eventKey={3} href="/user/login">
+            <Glyphicon glyph="log-in" title="ログイン" />
+          </NavItem>
         </Nav>
       </Navbar>
     );

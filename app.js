@@ -18,6 +18,8 @@ const bodyParser = require('body-parser');
 
 const search = require('./server/serach/search');
 
+const login = require('./server/user/login/login');
+
 const add = require('./server/add/add');
 
 const config = require('./webpack.config');
@@ -54,6 +56,10 @@ app.use('/qa/search/answer', search);
 app.use('/qa/add', express.static('./public'));
 
 app.use('/qa/add/action', add);
+
+app.use('/user/login', express.static('./public'));
+
+app.use('/user/login/action', login);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
