@@ -46,12 +46,12 @@ export default class AddForm extends Component {
     return (
       <form onSubmit ={e => this.handleSubmit(e)}>
         <FormGroup
-          controlId="formBasicText"
+          controlId="formControlsTextarea"
           //validationState={this.getValidationState()}
         >
           <ControlLabel>質問</ControlLabel>
           <FormControl
-            type="text"
+            componentClass="textarea"
             name="question"
             value={this.state.qa.question}
             placeholder="質問を入力して下さい"
@@ -61,12 +61,12 @@ export default class AddForm extends Component {
         </FormGroup>
 
         <FormGroup
-          controlId="formBasicText"
+          controlId="formControlsTextarea"
           //validationState={this.getValidationState()}
         >
           <ControlLabel>回答</ControlLabel>
           <FormControl
-            type="text"
+            componentClass="textarea"
             name="answer"
             value={this.state.qa.answer}
             placeholder="回答を入力して下さい"

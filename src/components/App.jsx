@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import HeaderNavbar from './HeaderNavbar';
 import QaSearchPage from './qa/serach/SearchPage';
 import QaAddPage from './qa/add/AddPage';
+import QaDetailPage from './qa/detail/DetailPage';
 import UserLoginPage from './user/login/LoginPage';
 
 const App = () => (
@@ -12,6 +13,7 @@ const App = () => (
             <Switch>
                 <Route extra path="/qa/search" component={QaSearchPage} />
                 <Route extra path="/qa/add" component={QaAddPage} />
+                <Route extra path="/qa/detail" component={QaDetailPage} />
                 <Route extra path="/user/login" component={UserLoginPage} />
             </Switch>
         </div>

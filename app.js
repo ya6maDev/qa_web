@@ -57,6 +57,8 @@ app.use('/qa/add', express.static('./public'));
 
 app.use('/qa/add/action', add);
 
+app.use('/qa/detail', express.static('./public'));
+
 app.use('/user/login', express.static('./public'));
 
 app.use('/user/login/action', login);
