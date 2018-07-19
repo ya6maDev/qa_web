@@ -14,9 +14,9 @@ export default class DetailPage extends Component {
           message={this.props.message}
           bsStyle={this.props.bsStyle}
         />
-        <DetailGrid 
+        {/* <DetailGrid 
           question={this.props.question} 
-          answer={this.props.answer} />
+          answer={this.props.answer} /> */}
       </div>
     );
   }

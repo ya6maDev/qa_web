@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import request from "superagent";
 import AddForm from "./AddForm";
 import QaDetail from "../detail/DetailPage";
+import AddFileForm from "./AddFileForm";
 
 const QA_ADD_URL = "/qa/add/action";
 
@@ -9,22 +10,35 @@ export default class AddPage extends Component {
   constructor(props) {
     super(props);
 
+    // パラメータを受け取る
+    const {params} = this.props.match;
+
     this.state = {
-      question: "",
-      answer: "",
+      actionName : params.action,
+      qa: {
+        question: "",
+        answer: ""
+      },
+      qas: {
+        qa: {
+          question: "",
+          answer: ""
+        }
+      },
       message: "",
       successFlg: false,
-      bsStyle: ""
+      bsStyle: "",
     };
   }
 
-  onSubmit(qa) {
-    var question = qa.question;
-    var answer = qa.answer;
+  onSubmit(param) {
+    // var question = qa.question;
+    // var answer = qa.answer;
     request
-      .post(QA_ADD_URL)
+      .post(QA_ADD_URL + '/' + this.state.actionName)
       .set("Content-Type", "application/json")
-      .send({ question: question, answer: answer })
+      // .send({ question: question, answer: answer })
+      .send({ param: param })
       .end((err, res) => {
         var message = "";
         var successFlg = false;
@@ -39,8 +53,8 @@ export default class AddPage extends Component {
           bsStyle = "success";
         }
         this.setState({
-          question: question,
-          answer: answer,
+          // question: question,
+          // answer: answer,
           message: message,
           successFlg: successFlg,
           bsStyle: bsStyle
@@ -49,23 +63,35 @@ export default class AddPage extends Component {
   }
 
   render() {
+
     if (this.state.successFlg) {
       return (
         <div>
           <QaDetail
-            question={this.state.question}
-            answer={this.state.answer}
+            // question={this.state.question}
+            // answer={this.state.answer}
             message={this.state.message}
             bsStyle={this.state.bsStyle}
           />
         </div>
       );
     } else {
-      return (
-        <div>
-          <AddForm onSubmit={qa => this.onSubmit(qa)} />
-        </div>
-      );
+
+      const actionName = this.state.actionName;
+
+      if(actionName == "input"){
+        return (
+          <div>
+            <AddForm onSubmit={qa => this.onSubmit(qa)} />
+          </div>
+        );
+      } else if(actionName == "upload"){
+        return (
+          <div>
+            <AddFileForm onSubmit={qas => this.onSubmit(qas)}/>
+          </div>
+        );
+      }
     }
   }
 }

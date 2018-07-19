@@ -12,7 +12,7 @@ const App = () => (
             <HeaderNavbar />
             <Switch>
                 <Route extra path="/qa/search" component={QaSearchPage} />
-                <Route extra path="/qa/add" component={QaAddPage} />
+                <Route extra path="/qa/add/:action" component={QaAddPage} />
                 <Route extra path="/qa/detail" component={QaDetailPage} />
                 <Route extra path="/user/login" component={UserLoginPage} />
             </Switch>

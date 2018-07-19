@@ -9,14 +9,14 @@ export default class AddForm extends Component {
 
     this.state = {
       qa: {
-        question: '',
-        answer: '',
-      } ,
-      message: ''
+        question: "",
+        answer: ""
+      },
+      message: ""
     };
   }
 
-    /**
+  /**
    * 値が変更された場合のイベントハンドラー
    * @param {*} e
    */
@@ -24,10 +24,10 @@ export default class AddForm extends Component {
     var qa = this.state.qa;
 
     switch (e.target.name) {
-      case 'question':
+      case "question":
         qa.question = e.target.value;
         break;
-      case 'answer':
+      case "answer":
         qa.answer = e.target.value;
         break;
       default:
@@ -44,7 +44,7 @@ export default class AddForm extends Component {
 
   render() {
     return (
-      <form onSubmit ={e => this.handleSubmit(e)}>
+      <form onSubmit={e => this.handleSubmit(e)}>
         <FormGroup
           controlId="formControlsTextarea"
           //validationState={this.getValidationState()}

@@ -53,7 +53,7 @@ app.use('/qa/search', express.static('./public'));
 
 app.use('/qa/search/answer', search);
 
-app.use('/qa/add', express.static('./public'));
+app.use('/qa/add/:action', express.static('./public'));
 
 app.use('/qa/add/action', add);
 
