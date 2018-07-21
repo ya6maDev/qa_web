@@ -14,11 +14,14 @@ export default class AddPage extends Component {
     const {params} = this.props.match;
 
     this.state = {
+      // アクション名
       actionName : params.action,
+      // QA
       qa: {
         question: "",
         answer: ""
       },
+      // QAリスト
       qas: {
         qa: {
           question: "",
@@ -32,12 +35,9 @@ export default class AddPage extends Component {
   }
 
   onSubmit(param) {
-    // var question = qa.question;
-    // var answer = qa.answer;
     request
       .post(QA_ADD_URL + '/' + this.state.actionName)
       .set("Content-Type", "application/json")
-      // .send({ question: question, answer: answer })
       .send({ param: param })
       .end((err, res) => {
         var message = "";

@@ -1,13 +1,24 @@
 import React from 'react';
 
-const DetailGrid = ({question, answer}) => (
+const DetailGrid = ({qas}) => (
     <div>
-        <h4>
-            質問: {question}
-        </h4>
-        <h4>
-            回答: {answer}
-        </h4>
+        <Table striped bordered condensed hover>
+            <thead>
+                <tr>
+                <th>質問</th>
+                <th>回答</th>
+                </tr>
+            </thead>
+            <tbody>
+                {qas.map(qa => (
+                    <tr>
+                    <td>qa.question</td>
+                    <td>qa.answer</td>
+                    </tr>
+                )
+                )}
+            </tbody>
+        </Table>
     </div>
 );
 

@@ -37,6 +37,10 @@ export default class AddForm extends Component {
     this.setState({ qa: qa });
   }
 
+  /**
+   * 値がSubmitされた場合のイベントハンドラー
+   * @param {*} e 
+   */
   handleSubmit(e) {
     e.preventDefault();
     this.props.onSubmit(this.state.qa);

@@ -28,13 +28,13 @@ export default class AddFileForm extends Component {
     this.handleParseCsv(file);
   }
 
+  /**
+   * 値がSubmitされた場合のイベントハンドラー
+   * @param {*} e 
+   */
   handleSubmit(e) {
     e.preventDefault();
     this.props.onSubmit(this.state.qas);
-  }
-
-  handleReflect(results) {
-    this.props.onComplete(results);
   }
 
   /**
