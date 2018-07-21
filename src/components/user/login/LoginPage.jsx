@@ -12,12 +12,15 @@ export default class LoginPage extends Component {
   }
 
   onSubmit(user) {
-    this.state.user = user;
-    const params = { user: this.state.user };
+    //this.state.user = user;
+    const params =  user;
+    console.log('params :');
+    console.log(params);
+    //const params = { user: 'a' };
     request
       .get('/user/login/action')
       .set("Content-Type", "application/json")
-      .query({params})
+      .query(params)
       .end((err, res) => {
         if (err) {
           console.log("ajax通信に失敗しました。");
