@@ -23,6 +23,9 @@ export default class HeaderNavbar extends Component {
           <NavItem eventKey={4} href="/user/login">
             <Glyphicon glyph="log-in" title="ログイン" />
           </NavItem>
+          <NavItem eventKey={5} href="/user/loginAdd">
+            <Glyphicon glyph="user" title="ユーザー新規登録" />
+          </NavItem>
         </Nav>
       </Navbar>
     );

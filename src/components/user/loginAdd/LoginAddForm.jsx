@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import { Form, FormGroup, Col, FormControl, Checkbox, Button } from 'react-bootstrap';
 
 /**
- * ログインページ 入力フォーム
+ * ユーザー新規登録ページ 入力フォーム
  */
 
-export default class LoginForm extends Component {
+export default class LoginAddForm extends Component {
     constructor(props) {
         super(props);
 
@@ -13,8 +13,9 @@ export default class LoginForm extends Component {
         
         this.state = {
             user: {
-              id: '',
-              passwd: '',
+              user_id: '',
+              password: '',
+              user_name: '',
             } ,
             message: ''
           };
@@ -25,10 +26,13 @@ export default class LoginForm extends Component {
     
         switch (e.target.name) {
           case 'id':
-            user.id = e.target.value;
+            user.user_id = e.target.value;
             break;
           case 'passwd':
-            user.passwd = e.target.value;
+            user.password = e.target.value;
+            break;
+          case 'name':
+            user.user_name = e.target.value;
             break;
           default:
             break;
@@ -75,9 +79,23 @@ export default class LoginForm extends Component {
                         </Col>
                     </FormGroup>
 
+                    <FormGroup controlId="formHorizontalName">
+                        <Col sm={2}>
+                            Name
+                        </Col>
+                        <Col sm={10}>
+                            <FormControl 
+                                type="string" 
+                                name="name" 
+                                placeholder="Name" 
+                                onChange={this.handleChange}
+                            />
+                        </Col>
+                    </FormGroup>
+
                     <FormGroup>
                         <Col smOffset={2} sm={10}>
-                            <Button type="submit">Sign in</Button>
+                            <Button type="submit">Submit</Button>
                         </Col>
                     </FormGroup>
                 </Form>;

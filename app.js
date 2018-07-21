@@ -20,6 +20,8 @@ const search = require('./server/serach/search');
 
 const login = require('./server/user/login/login');
 
+const loginAdd = require('./server/user/loginAdd/loginAdd');
+
 const add = require('./server/add/add');
 
 const config = require('./webpack.config');
@@ -62,6 +64,10 @@ app.use('/qa/detail', express.static('./public'));
 app.use('/user/login', express.static('./public'));
 
 app.use('/user/login/action', login);
+
+app.use('/user/loginAdd', express.static('./public'));
+
+app.use('/user/loginAdd/action', loginAdd);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
