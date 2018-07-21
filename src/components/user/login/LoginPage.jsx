@@ -12,11 +12,9 @@ export default class LoginPage extends Component {
   }
 
   onSubmit(user) {
-    //this.state.user = user;
     const params =  user;
     console.log('params :');
     console.log(params);
-    //const params = { user: 'a' };
     request
       .get('/user/login/action')
       .set("Content-Type", "application/json")
@@ -26,9 +24,9 @@ export default class LoginPage extends Component {
           console.log("ajax通信に失敗しました。");
         }
         console.log('res : ',res);
-        // QA結果を取得する
-        //const qa = res.body;
-        //this.setState({ answer: qa.answer });
+        // ログイン結果を取得する
+        const login = res.body;
+        this.setState({ user: login.id });
       });
   }
 

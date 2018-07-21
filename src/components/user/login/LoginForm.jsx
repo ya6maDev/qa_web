@@ -87,7 +87,7 @@ export default class LoginForm extends Component {
                         </Col>
                     </FormGroup>
                 </Form>;
-      </div>
+            </div>
         );
     }
 }
