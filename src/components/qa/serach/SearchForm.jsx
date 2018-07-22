@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { FormGroup, FormControl } from 'react-bootstrap';
+import React, { Component } from "react";
+import { FormGroup, FormControl } from "react-bootstrap";
 
 /**
  * QA検索ページ 入力フォーム
@@ -12,16 +12,16 @@ export default class SearchForm extends Component {
     this.handleChange = this.handleChange.bind(this);
 
     this.state = {
-      question: '',
-      answer: '',
+      question: "",
+      answer: ""
     };
   }
 
   getValidationState() {
     const length = this.state.question.length;
-    if (length > 10) return 'success';
-    else if (length > 5) return 'warning';
-    else if (length > 0) return 'error';
+    if (length > 10) return "success";
+    else if (length > 5) return "warning";
+    else if (length > 0) return "error";
     return null;
   }
 
@@ -35,7 +35,7 @@ export default class SearchForm extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    this.props.onSubmit(this.state.question);
+    this.props.onSubmit("ai", this.state.question);
   }
 
   render() {

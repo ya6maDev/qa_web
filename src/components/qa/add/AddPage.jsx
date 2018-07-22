@@ -11,11 +11,11 @@ export default class AddPage extends Component {
     super(props);
 
     // パラメータを受け取る
-    const {params} = this.props.match;
+    const { params } = this.props.match;
 
     this.state = {
       // アクション名
-      actionName : params.action,
+      actionName: params.action,
       // QA
       qa: {
         question: "",
@@ -30,13 +30,17 @@ export default class AddPage extends Component {
       },
       message: "",
       successFlg: false,
-      bsStyle: "",
+      bsStyle: ""
     };
   }
 
+  /**
+   * Submit
+   * @param {*} param
+   */
   onSubmit(param) {
     request
-      .post(QA_ADD_URL + '/' + this.state.actionName)
+      .post(QA_ADD_URL + "/" + this.state.actionName)
       .set("Content-Type", "application/json")
       .send({ param: param })
       .end((err, res) => {
@@ -63,7 +67,6 @@ export default class AddPage extends Component {
   }
 
   render() {
-
     if (this.state.successFlg) {
       return (
         <div>
@@ -76,19 +79,18 @@ export default class AddPage extends Component {
         </div>
       );
     } else {
-
       const actionName = this.state.actionName;
 
-      if(actionName == "input"){
+      if (actionName == "input") {
         return (
           <div>
             <AddForm onSubmit={qa => this.onSubmit(qa)} />
           </div>
         );
-      } else if(actionName == "upload"){
+      } else if (actionName == "upload") {
         return (
           <div>
-            <AddFileForm onSubmit={qas => this.onSubmit(qas)}/>
+            <AddFileForm onSubmit={qas => this.onSubmit(qas)} />
           </div>
         );
       }

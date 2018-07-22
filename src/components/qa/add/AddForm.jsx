@@ -39,7 +39,7 @@ export default class AddForm extends Component {
 
   /**
    * 値がSubmitされた場合のイベントハンドラー
-   * @param {*} e 
+   * @param {*} e
    */
   handleSubmit(e) {
     e.preventDefault();

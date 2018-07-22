@@ -30,7 +30,7 @@ export default class AddFileForm extends Component {
 
   /**
    * 値がSubmitされた場合のイベントハンドラー
-   * @param {*} e 
+   * @param {*} e
    */
   handleSubmit(e) {
     e.preventDefault();
@@ -39,7 +39,7 @@ export default class AddFileForm extends Component {
 
   /**
    * アップロードしたcsvファイルを変換する。
-   * @param {*} file 
+   * @param {*} file
    */
   handleParseCsv(file) {
     const reader = new FileReader();
@@ -56,7 +56,7 @@ export default class AddFileForm extends Component {
         dynamicTyping: true,
         skipEmptyLines: true,
         complete: results => {
-          this.setState({qas : results.data});
+          this.setState({ qas: results.data });
         }
       });
     };

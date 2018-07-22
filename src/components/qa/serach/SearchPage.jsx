@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import SearchForm from "./SearchForm";
 import SearchResult from "./SearchResult";
-import Table from "../table/Table";
+import TablePage from "../table/TablePage";
 import request from "superagent";
 import { Tabs, Tab } from "react-bootstrap";
 
@@ -18,7 +18,7 @@ export default class SearchPage extends Component {
 
     this.state = {
       // アクション名
-      actionName: "all",
+      actionName: "ai",
       // QAリスト
       qas: []
     };
@@ -44,9 +44,13 @@ export default class SearchPage extends Component {
     }
   }
 
-  onSubmit(params) {
+  /**
+   * Submit
+   * @param {*} params
+   */
+  onSubmit(actionName, params) {
     request
-      .get(QA_SEARCH_URL + "/" + this.state.actionName)
+      .get(QA_SEARCH_URL + "/" + actionName)
       .set("Content-Type", "application/json")
       .query({ params })
       .end((err, res) => {
@@ -55,11 +59,11 @@ export default class SearchPage extends Component {
         }
 
         // QA結果を取得する
-        const result = res.body;
+        const result = res.body.data;
 
-        switch (this.state.actionName) {
+        switch (actionName) {
           case "ai":
-            this.setState({ answer: result.answer });
+            this.setState({ answer: result["qas"][0].answer });
             break;
           case "favorite":
             this.setState({ qas: result });
@@ -77,7 +81,7 @@ export default class SearchPage extends Component {
     return (
       <div>
         <Tabs
-          defaultActiveKey={3}
+          defaultActiveKey={1}
           onSelect={this.handleSelect}
           id="uncontrolled-tab-example"
         >
@@ -89,10 +93,16 @@ export default class SearchPage extends Component {
             Tab 2 content
           </Tab>
           <Tab eventKey={3} title="QA全件表示">
-            <Table qas={this.state.qas} />
+            <TablePage qas={this.state.qas} />
           </Tab>
         </Tabs>
       </div>
     );
+  }
+
+  componentWillMount() {
+    // QAを全件取得する。
+    const params = {};
+    this.onSubmit("all", params);
   }
 }

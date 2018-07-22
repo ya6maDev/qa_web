@@ -6,11 +6,17 @@ const models = require('../../models');
  * 質問に対する回答を取得する。
  */
 router.get('/ai', (req, res) => {
-    const qa = {
-        question: '質問',
-        answer: '答え'
-    };
-    res.send(qa);
+    const qas = [
+        {
+            question: '質問',
+            answer: '答え'
+        }
+    ];
+
+    res.status(200).json({
+        successFlg: true,
+        data: { qas }
+    });
 });
 
 /**
@@ -18,18 +24,20 @@ router.get('/ai', (req, res) => {
  */
 router.get('/all', (req, res) => {
     models.QA.findAll({
-        attributes:['id', 'question', 'answer']
-    }).then(qas =>{
-        res.status(201).json({
-            successFlg: true,
-            data: { qas }
+        attributes: ['id', 'question', 'answer']
+    })
+        .then(qas => {
+            res.status(200).json({
+                successFlg: true,
+                data: { qas }
+            });
+        })
+        .catch(err => {
+            res.status(500).json({
+                successFlg: false,
+                data: { message: err.message }
+            });
         });
-    }).catch(err => {
-        res.status(500).json({
-            successFlg: false,
-            data: { message: err.message }
-        });
-    });
 });
 
 module.exports = router;
