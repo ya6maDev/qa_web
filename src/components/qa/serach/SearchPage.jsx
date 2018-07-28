@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import SearchForm from "./SearchForm";
 import SearchResult from "./SearchResult";
 import TablePage from "../table/TablePage";
+import JumbotronParts from "../../common/JumbotronParts";
+import DownLoadButton from "../serach/DownLoadButton";
 import request from "superagent";
 import { Tabs, Tab } from "react-bootstrap";
 
@@ -86,6 +88,7 @@ export default class SearchPage extends Component {
           id="uncontrolled-tab-example"
         >
           <Tab eventKey={1} title="AIに質問する">
+            <JumbotronParts title="" message="AIに質問をしてみよう" />
             <SearchForm onSubmit={question => this.onSubmit(question)} />
             <SearchResult answer={this.state.answer} />
           </Tab>
@@ -93,6 +96,8 @@ export default class SearchPage extends Component {
             Tab 2 content
           </Tab>
           <Tab eventKey={3} title="QA全件表示">
+            <JumbotronParts title="" message="登録されているQAを表示します。" />
+            <DownLoadButton qas={this.state.qas}/>
             <TablePage qas={this.state.qas} />
           </Tab>
         </Tabs>
@@ -100,6 +105,9 @@ export default class SearchPage extends Component {
     );
   }
 
+  /**
+   * ComponentがDOMツリーに追加される前に一度だけ呼ばれる。
+   */
   componentWillMount() {
     // QAを全件取得する。
     const params = {};

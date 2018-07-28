@@ -3,6 +3,7 @@ import request from "superagent";
 import AddForm from "./AddForm";
 import QaDetail from "../detail/DetailPage";
 import AddFileForm from "./AddFileForm";
+import JumbotronParts from "../../common/JumbotronParts";
 
 const QA_ADD_URL = "/qa/add/action";
 
@@ -84,12 +85,14 @@ export default class AddPage extends Component {
       if (actionName == "input") {
         return (
           <div>
+            <JumbotronParts title="" message="QAを登録します。" />
             <AddForm onSubmit={qa => this.onSubmit(qa)} />
           </div>
         );
       } else if (actionName == "upload") {
         return (
           <div>
+            <JumbotronParts title="" message="CSVファイルからQAを登録します。" />
             <AddFileForm onSubmit={qas => this.onSubmit(qas)} />
           </div>
         );
