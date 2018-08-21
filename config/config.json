@@ -22,7 +22,7 @@
     "password": null,
     "database": "database_production",
     "host": "127.0.0.1",
-    "storage": "./db/production/qa.sqlite3",
+    "dialect": "postgres",
     "operatorsAliases": false
   }
 }
