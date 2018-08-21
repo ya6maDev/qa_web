@@ -33,6 +33,8 @@ app.set('views', path.join(__dirname, 'views'));
 
 app.set('view engine', 'jsx');
 
+app.set('port', (process.env.PORT || 3000));
+
 app.engine('jsx', expressReactView.createEngine());
 
 // uncomment after placing your favicon in /public
@@ -87,8 +89,6 @@ app.use((err, req, res /* , next */) => {
     res.render('error');
 });
 
-const port = 3000;
-
 const devPort = 3001;
 
 const compiler = webpack(config);
@@ -99,8 +99,8 @@ devServer.listen(devPort, () => {
     console.log('起動しました', `http://localhost:${devPort}`);
 });
 
-app.listen(port, () => {
-    console.log('起動しました', `http://localhost:${port}`);
+app.listen(app.get('port'), () => {
+    console.log('起動しました', `http://localhost:${app.get('port')}`);
 });
 
 module.exports = app;
