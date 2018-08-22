@@ -52,23 +52,23 @@ app.use(cookieParser());
 // app.use(express.static(path.join(__dirname, './public/')));
 app.use(express.static(__dirname + '/public/'));
 
-app.use('/', express.static('./public/'));
+app.use('/', express.static('/public/'));
 
-app.use('/qa/search', express.static('./public'));
+app.use('/qa/search', express.static('/public/'));
 
 app.use('/qa/search/answer', search);
 
-app.use('/qa/add/:action', express.static('./public'));
+app.use('/qa/add/:action', express.static('/public/'));
 
 app.use('/qa/add/action', add);
 
-app.use('/qa/detail', express.static('./public'));
+app.use('/qa/detail', express.static('/public/'));
 
-app.use('/user/login', express.static('./public'));
+app.use('/user/login', express.static('/public/'));
 
 app.use('/user/login/action', login);
 
-app.use('/user/loginAdd', express.static('./public'));
+app.use('/user/loginAdd', express.static('/public/'));
 
 app.use('/user/loginAdd/action', loginAdd);
 
