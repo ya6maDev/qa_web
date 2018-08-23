@@ -50,34 +50,33 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 // app.use(express.static(path.join(__dirname, './public/')));
-app.use(express.static(__dirname + '/public/'));
+app.use('/public', express.static('./public'));
+app.use('/', express.static('./public'));
 
-app.use('/', express.static('/public/'));
-
-app.use('/qa/search', express.static('/public/'));
+app.use('/qa/search', express.static('./public'));
 
 app.use('/qa/search/answer', search);
 
-app.use('/qa/add/:action', express.static('/public/'));
+app.use('/qa/add/:action', express.static('./public'));
 
 app.use('/qa/add/action', add);
 
-app.use('/qa/detail', express.static('/public/'));
+app.use('/qa/detail', express.static('./public'));
 
-app.use('/user/login', express.static('/public/'));
+app.use('/user/login', express.static('./public'));
 
 app.use('/user/login/action', login);
 
-app.use('/user/loginAdd', express.static('/public/'));
+app.use('/user/loginAdd', express.static('./public'));
 
 app.use('/user/loginAdd/action', loginAdd);
 
 // catch 404 and forward to error handler
-app.use((req, res, next) => {
-    const err = new Error('Not Found');
-    err.status = 404;
-    next(err);
-});
+// app.use((req, res, next) => {c
+//     const err = new Error('Not Found');
+//     err.status = 404;
+//     next(err);
+// });
 
 // error handler
 app.use((err, req, res /* , next */) => {
