@@ -57,6 +57,22 @@ module.exports = [
                         fallback: 'style-loader',
                         use: 'css-loader!sass-loader'
                     })
+                },
+                {
+                    test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
+                    loader: 'url-loader?mimetype=image/svg+xml'
+                },
+                {
+                    test: /\.woff(\d+)?(\?v=\d+\.\d+\.\d+)?$/,
+                    loader: 'url-loader?mimetype=application/font-woff'
+                },
+                {
+                    test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
+                    loader: 'url-loader?mimetype=application/vnd.ms-fontobject'
+                },
+                {
+                    test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
+                    loader: 'url-loader?mimetype=application/x-font-ttf'
                 }
             ]
         },
