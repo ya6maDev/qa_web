@@ -49,7 +49,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(cookieParser());
 
-// app.use(express.static(path.join(__dirname, './public/')));
+app.use(express.static(path.join(__dirname, './public/')));
 app.use('/public', express.static('./public'));
 app.use('/', express.static('./public'));
 
@@ -70,34 +70,6 @@ app.use('/user/login/action', login);
 app.use('/user/loginAdd', express.static('./public'));
 
 app.use('/user/loginAdd/action', loginAdd);
-
-// catch 404 and forward to error handler
-// app.use((req, res, next) => {c
-//     const err = new Error('Not Found');
-//     err.status = 404;
-//     next(err);
-// });
-
-// error handler
-app.use((err, req, res /* , next */) => {
-    // set locals, only providing error in development
-    res.locals.message = err.message;
-    res.locals.error = req.app.get('env') === 'development' ? err : {};
-
-    // render the error page
-    res.status(err.status || 500);
-    res.render('error');
-});
-
-const devPort = 3001;
-
-const compiler = webpack(config);
-
-const devServer = new WebpackDevServer(compiler, config.devServer);
-
-devServer.listen(devPort, () => {
-    console.log('起動しました', `http://localhost:${devPort}`);
-});
 
 app.listen(app.get('port'), () => {
     console.log('起動しました', `http://localhost:${app.get('port')}`);
