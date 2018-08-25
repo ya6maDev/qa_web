@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node app.js",
     "watch": "webpack -w",
-    "build": "webpack"
+    "build": "webpack",
+    "heroku-postbuild": "npm run build"
   },
   "dependencies": {
     "babel-core": "^6.26.0",
