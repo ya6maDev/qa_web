@@ -20,9 +20,9 @@ export default class SearchPage extends Component {
 
     this.state = {
       // アクション名
-      actionName: "ai",
+      actionName: "",
       // QAリスト
-      qas: []
+      qas: [],
     };
   }
 
@@ -33,7 +33,7 @@ export default class SearchPage extends Component {
   handleSelect(key) {
     switch (key) {
       case 1:
-        this.setState({ actionName: "ai" });
+        this.setState({ actionName: "ai"});
         break;
       case 2:
         this.setState({ actionName: "favorite" });
@@ -50,27 +50,41 @@ export default class SearchPage extends Component {
    * Submit
    * @param {*} params
    */
-  onSubmit(actionName, params) {
+  onSubmit(params) {
+
+    const actionName = params.actionName;
+    const question = params.question;
+
+    var url = ''
+    if(actionName == "ai"){
+      url = 'http://127.0.0.1:5000/qa/reply/' + question
+    } else {
+      url = QA_SEARCH_URL + "/" + actionName
+    }
+
     request
-      .get(QA_SEARCH_URL + "/" + actionName)
+      .get(url)
       .set("Content-Type", "application/json")
-      .query({ params })
+      .query({ question })
       .end((err, res) => {
         if (err) {
           console.log("ajax通信に失敗しました。");
         }
 
         // QA結果を取得する
-        const result = res.body.data;
+        var result = '';
 
         switch (actionName) {
           case "ai":
-            this.setState({ answer: result["qas"][0].answer });
+            result = res.body.answer;
+            this.setState({ answer: result });
             break;
           case "favorite":
+            result = res.body.data;
             this.setState({ qas: result });
             break;
           case "all":
+            result = res.body.data;
             this.setState({ qas: result });
             break;
           default:
@@ -110,7 +124,7 @@ export default class SearchPage extends Component {
    */
   componentWillMount() {
     // QAを全件取得する。
-    const params = {};
-    this.onSubmit("all", params);
+    const params = {actionName: "all", question:""};
+    this.onSubmit(params);
   }
 }

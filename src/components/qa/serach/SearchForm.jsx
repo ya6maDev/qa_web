@@ -33,9 +33,14 @@ export default class SearchForm extends Component {
     this.setState({ question: e.target.value });
   }
 
+  /**
+   * AIに対して、質問を投げる
+   * @param {*} e 
+   */
   handleSubmit(e) {
     e.preventDefault();
-    this.props.onSubmit("ai", this.state.question);
+    const params = {actionName: "ai", question:this.state.question};
+    this.props.onSubmit(params);
   }
 
   render() {
